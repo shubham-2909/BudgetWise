@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter } from "next/font/google"
+import { ClerkProvider } from "@clerk/nextjs";;
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { RootProviders } from "@/components/RootProviders";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
+          <Toaster richColors position="bottom-right" />
           <RootProviders
             attribute="class"
             defaultTheme="system"
@@ -27,7 +29,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
-          </RootProviders></body>
+          </RootProviders>
+        </body>
       </html>
     </ClerkProvider>
   );
