@@ -66,7 +66,7 @@ export function CurrencyComboBox() {
 
   const selectedOptions = React.useCallback((currency: Currency | null) => {
     if (!currency) {
-      toast.error("Please selet a currency")
+      toast.error("Please select a currency")
       return
     }
 
