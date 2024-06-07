@@ -1,5 +1,4 @@
 "use server"
-
 import prisma from "@/lib/prisma";
 import { CreateTransactionSchema, CreateTransactionSchemaType } from "@/schema/transaction";
 import { currentUser } from "@clerk/nextjs/server";
@@ -10,8 +9,6 @@ export async function createTransaction(form: CreateTransactionSchemaType) {
   if (!user) {
     redirect("sign-in")
   }
-
-
   const parsedBody = CreateTransactionSchema.safeParse(form)
   if (!parsedBody.success) {
     throw new Error(parsedBody.error.message)
@@ -23,7 +20,7 @@ export async function createTransaction(form: CreateTransactionSchemaType) {
     throw new Error("Category not found")
   }
   // NOTE: don't make confusion between $transaction ( prisma ) and prisma.transaction (table)
-  // 
+  //
   await prisma.$transaction([
     // create user transaction
     prisma.transaction.create({

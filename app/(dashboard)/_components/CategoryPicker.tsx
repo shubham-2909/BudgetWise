@@ -6,7 +6,7 @@ import { TransactionTypes } from '@/lib/types'
 import { Category } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import React, { useCallback, useEffect, useState } from 'react'
-import CreateCategoryDialog from './CreateCategoryDialog'
+import { CreateCategoryDialog } from './CreateCategoryDialog'
 import { CommandItem } from 'cmdk'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -16,7 +16,7 @@ type Props = {
   onChange: (value: string) => void
 }
 
-function CategoryPicker({ type, onChange }: Props) {
+export function CategoryPicker({ type, onChange }: Props) {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState("")
   useEffect(() => {
@@ -78,7 +78,6 @@ function CategoryPicker({ type, onChange }: Props) {
   )
 }
 
-export default CategoryPicker
 
 function CategoryRow({ category }: { category: Category }) {
   return (

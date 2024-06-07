@@ -8,7 +8,7 @@ import { CreateTransactionSchema, CreateTransactionSchemaType } from '@/schema/t
 import { zodResolver } from "@hookform/resolvers/zod"
 import React, { ReactNode, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import CategoryPicker from './CategoryPicker'
+import { CategoryPicker } from './CategoryPicker'
 import { Button } from '@/components/ui/button'
 import { format } from 'date-fns'
 import { CalendarIcon, Loader2 } from 'lucide-react'

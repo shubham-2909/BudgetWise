@@ -23,7 +23,7 @@ type Props = {
   type: TransactionTypes
   successCallBack: (category: Category) => void
 }
-const CreateCategoryDialog = ({ type, successCallBack }: Props) => {
+export const CreateCategoryDialog = ({ type, successCallBack }: Props) => {
   const [open, setOpen] = useState(false)
   const form = useForm<CreateCategorySchemaType>({
     resolver: zodResolver(CreateCategorySchema),
@@ -159,4 +159,3 @@ const CreateCategoryDialog = ({ type, successCallBack }: Props) => {
   )
 }
 
-export default CreateCategoryDialog
