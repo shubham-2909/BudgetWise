@@ -7,7 +7,6 @@ export const OverviewQuerySchema = z.object({
   to: z.coerce.date(),
 }).refine((args) => {
   const { from, to } = args
-
   const days = differenceInDays(to, from)
   const isValidRange = days > 0 && days <= MAX_DATE_RANGE_DAYS
   return isValidRange

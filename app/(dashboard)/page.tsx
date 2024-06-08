@@ -23,7 +23,7 @@ export default async function page() {
             <CreateTransactionDialog trigger={
               <Button className="text-white border-emerald-500 bg-emerald-950 hover:bg-emerald-700 hover:text-white" variant={`outline`}>New Income 🤑</Button>
             } type="income" />
-            <CreateTransactionDialog trigger={<Button className="text-white hover:text-white bg-rose-950 border-rose-500 hover:bg-rose-700" variant={`outline`} >New Expense 🫠</Button>} type="expense" />
+            <CreateTransactionDialog trigger={<Button className="text-white hover:text-white bg-rose-950 border-rose-500 hover:bg-rose-700" variant={`outline`} >New Expense 😤 </Button>} type="expense" />
           </div>
         </div>
       </div>

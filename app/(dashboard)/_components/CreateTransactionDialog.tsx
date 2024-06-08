@@ -6,7 +6,7 @@ import { TransactionTypes } from '@/lib/types'
 import { cn } from '@/lib/utils'
 import { CreateTransactionSchema, CreateTransactionSchemaType } from '@/schema/transaction'
 import { zodResolver } from "@hookform/resolvers/zod"
-import React, { ReactNode, useCallback, useState } from 'react'
+import { ReactNode, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { CategoryPicker } from './CategoryPicker'
 import { Button } from '@/components/ui/button'
