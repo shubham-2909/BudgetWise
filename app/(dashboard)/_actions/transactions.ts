@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export async function createTransaction(form: CreateTransactionSchemaType) {
   const user = await currentUser()
   if (!user) {
-    redirect("sign-in")
+    redirect("/sign-in")
   }
   const parsedBody = CreateTransactionSchema.safeParse(form)
   if (!parsedBody.success) {
