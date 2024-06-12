@@ -81,7 +81,7 @@ export function CurrencyComboBox() {
       <SkeletonWrapper isLoading={isFetching}>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant="outline" className="w-[200px] justify-start">
+            <Button variant="outline" className="w-full justify-start">
               {selectedCurrency ? <>{selectedCurrency.label}</> : <>Set currency</>}
             </Button>
           </PopoverTrigger>
@@ -97,7 +97,7 @@ export function CurrencyComboBox() {
     <SkeletonWrapper isLoading={isFetching}>
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Button variant="outline" className="w-[150px] justify-start">
+          <Button variant="outline" className="w-full justify-start">
             {selectedCurrency ? <>{selectedCurrency.label}</> : <>Set Currency</>}
           </Button>
         </DrawerTrigger>

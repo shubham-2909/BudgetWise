@@ -11,6 +11,7 @@ import { GetHistoryDataResponseType } from "@/app/api/history-data/route"
 import { Bar, CartesianGrid, ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip } from "recharts"
 import { cn } from "@/lib/utils"
 import CountUp from "react-countup"
+import { SkeletonWrapper } from "@/components/SkeletonWrapper"
 
 type Props = {
   userSettings: UserSettings
@@ -52,59 +53,63 @@ export function History({ userSettings }: Props) {
         </CardHeader>
         <CardContent>
           {dataAvailable && (
-            <ResponsiveContainer width={"100%"} height={300}>
-              <BarChart data={historyPeriodData.data} height={200} barCategoryGap={5} >
-                <defs>
-                  <linearGradient id="incomeBar" x1={`0`} y1={`0`} x2={`0`} y2={`1`}>
-                    <stop offset={`0`} stopColor="#10b981" stopOpacity={`1`} />
-                    <stop offset={`0`} stopColor="#10b981" stopOpacity={`1`} />
-                  </linearGradient>
-                  <linearGradient id="expenseBar" x1={`0`} y1={`0`} x2={`0`} y2={`1`}>
-                    <stop offset={`0`} stopColor="#ef4444" stopOpacity={`1`} />
-                    <stop offset={`0`} stopColor="#ef4444" stopOpacity={`1`} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray={`5 5`} strokeOpacity={`0.2`} vertical={false} />
-                <XAxis
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                  padding={{ left: 5, right: 5 }}
-                  dataKey={(data) => {
-                    const { month, year, day } = data
-                    const date = new Date(year, month, day || 1)
-                    if (timeFrame === "year") {
+            <SkeletonWrapper isLoading={historyPeriodData.isFetching}>
+              <ResponsiveContainer width={"100%"} height={300}>
+                <BarChart data={historyPeriodData.data} height={200} barCategoryGap={5} >
+                  <defs>
+                    <linearGradient id="incomeBar" x1={`0`} y1={`0`} x2={`0`} y2={`1`}>
+                      <stop offset={`0`} stopColor="#10b981" stopOpacity={`1`} />
+                      <stop offset={`0`} stopColor="#10b981" stopOpacity={`1`} />
+                    </linearGradient>
+                    <linearGradient id="expenseBar" x1={`0`} y1={`0`} x2={`0`} y2={`1`}>
+                      <stop offset={`0`} stopColor="#ef4444" stopOpacity={`1`} />
+                      <stop offset={`0`} stopColor="#ef4444" stopOpacity={`1`} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray={`5 5`} strokeOpacity={`0.2`} vertical={false} />
+                  <XAxis
+                    stroke="#888888"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                    padding={{ left: 5, right: 5 }}
+                    dataKey={(data) => {
+                      const { month, year, day } = data
+                      const date = new Date(year, month, day || 1)
+                      if (timeFrame === "month") {
+                        return date.toLocaleString("default", {
+                          day: "2-digit"
+                        })
+                      }
                       return date.toLocaleString("default", {
                         month: "long"
                       })
-                    }
-                    return date.toLocaleString("default", {
-                      day: "2-digit"
-                    })
-                  }}
-                />
-                <YAxis
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Bar dataKey={`income`} label="income" fill="url(#incomeBar)" radius={4} className="cursor-pointer" />
-                <Bar dataKey={`expense`} label="expense" fill="url(#expenseBar)" radius={4} className="cursor-pointer" />
-                <Tooltip cursor={{ opacity: 0.1 }} content={props => (
-                  <CustomTooltip formatter={formatter} {...props} />
-                )} />
-              </BarChart>
-            </ResponsiveContainer>
+                    }}
+                  />
+                  <YAxis
+                    stroke="#888888"
+                    fontSize={12}
+                    tickLine={false}
+                    axisLine={false}
+                  />
+                  <Bar dataKey={`income`} label="income" fill="url(#incomeBar)" radius={4} className="cursor-pointer" />
+                  <Bar dataKey={`expense`} label="expense" fill="url(#expenseBar)" radius={4} className="cursor-pointer" />
+                  <Tooltip cursor={{ opacity: 0.1 }} content={props => (
+                    <CustomTooltip formatter={formatter} {...props} />
+                  )} />
+                </BarChart>
+              </ResponsiveContainer>
+            </SkeletonWrapper>
           )}
           {!dataAvailable && (
-            <Card className="flex h-[300px] flex-col items-center justify-center bg-background">
-              No Data for the selected Period
-              <p className="text-sm text-muted-foreground">
-                Try selecting a different period or try adding new transactions
-              </p>
-            </Card>
+            <SkeletonWrapper isLoading={historyPeriodData.isFetching}>
+              <Card className="flex h-[300px] flex-col items-center justify-center bg-background">
+                No Data for the selected Period
+                <p className="text-sm text-muted-foreground">
+                  Try selecting a different period or try adding new transactions
+                </p>
+              </Card>
+            </SkeletonWrapper>
           )}
         </CardContent>
       </Card>

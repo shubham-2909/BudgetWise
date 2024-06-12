@@ -47,7 +47,7 @@ export function StatsCards({ from, to, userSettings }: Props) {
           value={expense}
           title="Expense"
           icon={
-            <TrendingDown className="h-12 w-12 items-center rounded-lg p-2 text-red-500 bg-red-400/10" />
+            <TrendingDown className="h-12 w-12 items-center rounded-lg p-2 text-rose-500 bg-red-400/10" />
           }
         />
       </SkeletonWrapper>
