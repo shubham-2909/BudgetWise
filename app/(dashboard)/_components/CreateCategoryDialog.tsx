@@ -67,7 +67,7 @@ export const CreateCategoryDialog = ({ type, successCallBack, trigger }: Props) 
   }, [mutate])
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         {trigger ? trigger : (
           <div>
             <Button className="flex justify-start items-center border-separate rounded-none border-b px-3 py-3 text-muted-foreground w-full">
